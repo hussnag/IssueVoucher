@@ -1,0 +1,79 @@
+.scanner-page {
+  --background: transparent;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  padding-top: 60px;
+  text-align: center;
+  color: white;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+}
+
+.scanner-frame {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin-top: 100px;
+  background: transparent;
+}
+
+.corner {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  border: 5px solid #00e5ff;
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.hint {
+  color: white;
+  margin-top: 25px;
+  font-size: 15px;
+}
+
+.gallery-btn {
+  margin-top: 40px;
+  width: 80%;
+  --border-radius: 14px;
+}

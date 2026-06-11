@@ -1,0 +1,136 @@
+// .login-content {
+//   --background: linear-gradient(
+//     135deg,
+//     #667eea 0%,
+//     #764ba2 100%
+//   );
+// }
+
+// .login-container {
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   padding: 24px;
+// }
+.login-content {
+  --background: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 100%
+  );
+}
+
+.login-container {
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 24px;
+  box-sizing: border-box;
+}
+.logo-section {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+
+  ion-icon {
+    font-size: 70px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  p {
+    margin-top: 8px;
+    opacity: 0.8;
+    font-size: 15px;
+  }
+}
+
+.login-card {
+  border-radius: 28px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+
+  ion-card-content {
+    padding: 24px;
+  }
+}
+
+.custom-item {
+  margin-bottom: 16px;
+  border-radius: 16px;
+  --background: rgba(255, 255, 255, 0.9);
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+
+  ion-icon {
+    color: #764ba2;
+  }
+
+  ion-input {
+    --padding-top: 14px;
+    --padding-bottom: 14px;
+  }
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 20px;
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}
+
+.login-btn {
+  --background: #ffffff;
+  --color: #764ba2;
+  height: 52px;
+  font-weight: 700;
+  margin-top: 10px;
+  --border-radius: 14px;
+}
+
+.divider {
+  text-align: center;
+  color: white;
+  margin: 20px 0;
+  position: relative;
+
+  span {
+    padding: 0 12px;
+    background: transparent;
+  }
+}
+
+.google-btn {
+  --border-radius: 14px;
+  height: 52px;
+  --border-color: white;
+  --color: white;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 25px;
+  color: white;
+  font-size: 14px;
+
+  a {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}

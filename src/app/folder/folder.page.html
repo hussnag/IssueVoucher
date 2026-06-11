@@ -1,21 +1,248 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="main-toolbar">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ folder }}</ion-title>
+    <ion-title>Issue Voucher</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="light" title="Today's sales">
+        <ion-icon name="receipt-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content [fullscreen]="true" class="pos-content">
+  <!-- <section class="page-header">
+    <div>
+      <h2>Checkout ready</h2>
+      <p>
+        Use the fields below to pick job and location, then tap items to view
+        details.
+      </p>
+    </div>
+    <div class="header-badges">
+      <span>Live</span>
+      <span>Fast mode</span>
+    </div>
+  </section>
+   -->
+  <section class="sale-meta">
+    <div class="meta-card">
+      <ion-select
+        label="Job"
+        labelPlacement="stacked"
+        fill="outline"
+        placeholder="Select Job"
+      >
+        <ion-select-option *ngFor="let job of jobList" [value]="job.value">
+          {{ job.label }}
+        </ion-select-option>
+      </ion-select>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <!-- <div class="meta-card">
+      <ion-label>
+        <span>Location</span>
+        <ion-select
+          [(ngModel)]="selectedLocation"
+          interface="popover"
+          placeholder="Select location"
+        >
+          <ion-select-option *ngFor="let l of locations" [value]="l"
+            >{{ l }}</ion-select-option
+          >
+        </ion-select>
+      </ion-label>
+    </div> -->
+  </section>
+  <!-- (click)="startScan()"  (click)="isModalOpen = true"   -->
+  <section class="quick-actions">
+    <ion-button class="add-btn" (click)="openScanner()">
+      <ion-icon name="add-outline"></ion-icon>
+      ADD ITEM
+    </ion-button>
+  </section>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- Scanner Overlay -->
+  <div class="scanner-container" *ngIf="showScanner">
+    <!-- Camera View -->
+    <div id="camera-view"></div>
+
+    <!-- Dark Overlay UI -->
+    <div class="overlay">
+      <div class="header">
+        <ion-button fill="clear" (click)="closeScanner()">
+          <ion-icon name="close-outline" color="light"></ion-icon>
+        </ion-button>
+
+        <h2>Scan QR Code</h2>
+      </div>
+
+      <div class="scanner-frame">
+        <div class="scan-line"></div>
+
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+      </div>
+
+      <p class="hint">Align the QR code within the frame</p>
+    </div>
   </div>
+  <ion-card class="sale-card">
+    <ion-card-content>
+      <div class="sale-card-header">
+        <div>
+          <!-- <p class="small-note">Tap item to edit quantity</p> -->
+        </div>
+        <ion-icon name="receipt-outline"></ion-icon>
+      </div>
+      <div *ngFor="let item of items; let i = index" class="sale-item-wrapper">
+        <ion-item
+          lines="none"
+          class="sale-item"
+          button
+          detail
+          (click)="toggleItem(i)"
+        >
+          <ion-label>
+            <h3>{{ item.name }}</h3>
+            <!-- <p>
+              {{ item.unit }} • Qty {{ item.quantity }} • ₱{{ item.price }} each
+            </p> -->
+          </ion-label>
+        </ion-item>
+
+        <div class="item-details" *ngIf="item.expanded">
+          <div class="detail-grid">
+            <!-- Header Row -->
+            <div class="detail-grid-header">Qty</div>
+            <div class="detail-grid-header">Unit</div>
+            <div class="detail-grid-header">Rate</div>
+            <div class="detail-grid-header">Amount</div>
+
+            <!-- Value Row -->
+            <div>{{ item.quantity }}</div>
+            <div>{{ item.unit }}</div>
+            <div>₱{{ item.price }}</div>
+            <div>₱{{ item.quantity * item.price }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-divider"></div>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong>₱1,000</strong>
+      </div>
+      <div class="summary-row">
+        <span>Tax</span>
+        <strong>₱80</strong>
+      </div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <strong>₱1,240</strong>
+      </div>
+
+      <div class="checkout-actions">
+        <ion-button expand="block" color="primary" class="action-button">
+          <ion-icon slot="start"   name="save-outline"></ion-icon>Save
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="medium"
+          ><ion-icon slot="start" name="trash-outline"></ion-icon>Cancel
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <!-- 
+  <section class="quick-actions">
+    <ion-button fill="solid" color="secondary" class="action-button">
+      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+      Add item
+    </ion-button>
+    <ion-button fill="outline" color="tertiary" class="action-button">
+      <ion-icon slot="start" name="scan-circle-outline"></ion-icon>
+      Scan code
+    </ion-button>
+    <ion-button fill="outline" color="success" class="action-button">
+      <ion-icon slot="start" name="cash-outline"></ion-icon>
+      Cash pay
+    </ion-button>
+    <ion-button fill="outline" color="warning" class="action-button">
+      <ion-icon slot="start" name="card-outline"></ion-icon>
+      Card pay
+    </ion-button>
+  </section> -->
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Item Details</ion-title>
+
+          <ion-buttons slot="end">
+            <ion-button (click)="isModalOpen = false"> Close </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ itemName }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- Item Name -->
+            <ion-item>
+              <ion-label position="floating">Item Name</ion-label>
+              <ion-input [(ngModel)]="itemName" readonly> </ion-input>
+            </ion-item>
+
+            <!-- Qty -->
+            <ion-item>
+              <ion-label position="floating">Qty</ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="qty"
+                (ionInput)="calculateAmount()"
+              >
+              </ion-input>
+            </ion-item>
+
+            <!-- Unit -->
+            <ion-item>
+              <ion-label position="floating">Unit</ion-label>
+              <ion-input [(ngModel)]="unit" readonly> </ion-input>
+            </ion-item>
+
+            <!-- Rate -->
+            <ion-item>
+              <ion-label position="floating">Rate</ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="rate"
+                (ionInput)="calculateAmount()"
+              >
+              </ion-input>
+            </ion-item>
+
+            <!-- Amount -->
+            <ion-item>
+              <ion-label position="floating">Amount</ion-label>
+              <ion-input type="number" [(ngModel)]="amount" readonly>
+              </ion-input>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <section class="quick-actions">
+          <ion-button expand="block" color="secondary" (click)="addItem()">
+            <ion-icon slot="start" name="add-outline"></ion-icon>
+            Add
+          </ion-button>
+        </section>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

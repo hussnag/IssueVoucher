@@ -1,100 +1,191 @@
+ion-menu {
+  --width: 300px;
+  --background: #07122f;
+}
+
 ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  --background: transparent;
+  background: linear-gradient(180deg, #243b7a 0%, #2f6ae1 42%, #183f91 100%);
+  color: #eef5ff;
+}
+
+.sidebar-content {
+  padding: 26px 18px 24px;
+  border-radius: 12px;
+  background: rgba(4, 13, 34, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 32px 60px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+}
+
+.sidebar-topbar {
+  --background: transparent;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.sidebar-topbar .menu-brand {
+  margin-bottom: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 12px;
+}
+
+.menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 0;
+  padding: 12px 12px;
+}
+
+.menu-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #243b7a 0%, #4172d5 100%);
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(18, 37, 85, 0.22);
+}
+
+.menu-brand-text h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f9fbff;
+}
+
+.menu-brand-text p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 ion-menu.md ion-content {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --padding-top: 20px;
-  --padding-bottom: 20px;
+  --padding-start: 0px;
+  --padding-end: 0px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
 }
 
 ion-menu.md ion-list {
-  padding: 20px 0;
+  padding: 0;
+}
+
+ion-menu.md ion-list#inbox-list,
+ion-menu.md ion-list#labels-list {
+  margin: 0 0 8px;
+  padding: 0;
 }
 
 ion-menu.md ion-note {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-ion-menu.md ion-list-header,
-ion-menu.md ion-note {
-  padding-left: 10px;
+ion-menu.md ion-list-header {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 16px 14px;
+  letter-spacing: 0.01em;
 }
 
 ion-menu.md ion-list#inbox-list {
-  border-bottom: 1px solid var(--ion-background-color-step-150, #d7d8da);
-}
-
-ion-menu.md ion-list#inbox-list ion-list-header {
-  font-size: 22px;
-  font-weight: 600;
-
-  min-height: 20px;
-}
-
-ion-menu.md ion-list#labels-list ion-list-header {
-  font-size: 16px;
-
-  margin-bottom: 18px;
-
-  color: #757575;
-
-  min-height: 26px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 ion-menu.md ion-item {
-  --padding-start: 10px;
-  --padding-end: 10px;
-  border-radius: 4px;
+  --background: rgba(12, 22, 50, 0.75);
+  --border-radius: 18px;
+  margin: 8px 12px;
+  padding: 14px 16px;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+ion-menu.md ion-item:hover {
+  --background: rgba(10, 20, 44, 0.95);
+  transform: translateX(1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
 ion-menu.md ion-item.selected {
-  --background: rgba(var(--ion-color-primary-rgb), 0.14);
-}
-
-ion-menu.md ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
+  --background: rgba(25, 48, 96, 0.95);
+  box-shadow: inset 4px 0 0 var(--ion-color-primary);
 }
 
 ion-menu.md ion-item ion-icon {
-  color: #616e7e;
+  color: #a5c7ff;
 }
 
 ion-menu.md ion-item ion-label {
-  font-weight: 500;
+  color: #ffffff;
+  font-weight: 600;
 }
 
-ion-menu.ios ion-content {
-  --padding-bottom: 20px;
+ion-menu.md ion-list#labels-list {
+  background: linear-gradient(
+    135deg,
+    rgba(100, 150, 255, 0.12) 0%,
+    rgba(80, 120, 200, 0.08) 100%
+  );
+  border-radius: 16px;
+  padding: 12px;
+  margin: 24px 12px 8px;
+  border: 1px solid rgba(100, 150, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(100, 150, 255, 0.1);
 }
 
-ion-menu.ios ion-list {
-  padding: 20px 0 0 0;
+ion-menu.md ion-list#labels-list ion-list-header {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 12px;
+  padding: 0 4px 0 4px;
+  font-weight: 700;
 }
 
-ion-menu.ios ion-note {
-  line-height: 24px;
-  margin-bottom: 20px;
+ion-menu.md ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
 }
 
 ion-menu.ios ion-item {
+  --background: rgba(12, 22, 50, 0.75);
   --padding-start: 16px;
   --padding-end: 16px;
-  --min-height: 50px;
+  --min-height: 54px;
+  margin: 6px 12px;
+  border-radius: 16px;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-ion-menu.ios ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
+ion-menu.ios ion-item:hover {
+  --background: rgba(10, 20, 44, 0.95);
+  transform: translateX(1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.14);
+}
+
+ion-menu.ios ion-item.selected {
+  --background: rgba(25, 48, 96, 0.95);
+  box-shadow: inset 4px 0 0 var(--ion-color-primary);
 }
 
 ion-menu.ios ion-item ion-icon {
-  font-size: 24px;
-  color: #73849a;
-}
-
-ion-menu.ios ion-list#labels-list ion-list-header {
-  margin-bottom: 8px;
+  color: #b9d5ff;
 }
 
 ion-menu.ios ion-list-header,
@@ -103,17 +194,49 @@ ion-menu.ios ion-note {
   padding-right: 16px;
 }
 
+ion-menu.ios ion-list#labels-list {
+  background: linear-gradient(
+    135deg,
+    rgba(100, 150, 255, 0.12) 0%,
+    rgba(80, 120, 200, 0.08) 100%
+  );
+  border-radius: 16px;
+  padding: 12px;
+  margin: 24px 12px 8px;
+  border: 1px solid rgba(100, 150, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(100, 150, 255, 0.1);
+}
+
 ion-menu.ios ion-note {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 ion-note {
   display: inline-block;
   font-size: 16px;
-
-  color: var(--ion-color-medium-shade);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 ion-item.selected {
   --color: var(--ion-color-primary);
+}
+/* Logout Button Only */
+
+.logout-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.logout-btn {
+  --background: #ff4d67;
+  --background-hover: #ff3655;
+  --border-radius: 16px;
+  height: 50px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  box-shadow: 0 10px 24px rgba(255, 77, 103, 0.25);
 }

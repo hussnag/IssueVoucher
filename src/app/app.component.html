@@ -1,10 +1,20 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi&#64;ionicframework.com</ion-note>
+    <ion-menu *ngIf="showMenu" contentId="main-content">
+      <ion-content class="sidebar-content">
+        <ion-toolbar class="sidebar-topbar">
+          <div class="menu-brand">
+            <div class="menu-avatar">IV</div>
+            <div class="menu-brand-text">
+              <h1>Issue Voucher</h1>
+              <p>issuevoucher@gmail.com</p>
+            </div>
+          </div>
+        </ion-toolbar>
+
+        <!-- <ion-list id="inbox-list">
+          <ion-list-header>Inspire</ion-list-header>
+          <ion-note>Inspire2421@admin.com</ion-note>
 
           @for (p of appPages; track p; let i = $index) {
             <ion-menu-toggle auto-hide="false">
@@ -14,18 +24,28 @@
               </ion-item>
             </ion-menu-toggle>
           }
-        </ion-list>
+        </ion-list> -->
 
         <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
           @for (label of labels; track label) {
             <ion-item lines="none">
-              <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
+              <ion-icon
+                aria-hidden="true"
+                slot="start"
+                ios="bookmark-outline"
+                md="bookmark-sharp"
+              ></ion-icon>
               <ion-label>{{ label }}</ion-label>
             </ion-item>
           }
         </ion-list>
+        <!-- Put this just before </ion-content> -->
+
+        <div class="logout-wrapper">
+          <ion-button expand="block" class="logout-btn" (click)="logout()">
+            Logout
+          </ion-button>
+        </div>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

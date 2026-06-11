@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
-};
+  production: true,
+  apiRootURL: 'http://194.233.95.37:809/api/',
+ };

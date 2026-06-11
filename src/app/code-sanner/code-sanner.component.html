@@ -1,0 +1,81 @@
+<!-- <ion-content class="scanner-page" fullscreen>
+
+   <div id="camera-view"></div>
+
+   <div class="overlay">
+
+    <div class="header">
+      <ion-button fill="clear">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <h2>Scan QR Code</h2>
+    </div>
+
+   <div class="scanner-frame">
+  <div class="scan-line"></div>
+
+  <div class="corner top-left"></div>
+  <div class="corner top-right"></div>
+  <div class="corner bottom-left"></div>
+  <div class="corner bottom-right"></div>
+</div>
+
+    <p class="hint">
+      Align the QR code within the frame
+    </p>
+
+    <ion-button expand="block" class="gallery-btn">
+      Scan from Gallery
+    </ion-button>
+
+  </div>
+
+</ion-content> -->
+<ion-content>
+
+  <ion-button (click)="openScanner()">
+    Open QR Scanner
+  </ion-button>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="openScanner()">
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Scanner Overlay -->
+  <div *ngIf="showScanner" class="scanner-container">
+
+    <div id="camera-view"></div>
+
+    <div class="overlay">
+
+      <div class="header">
+        <ion-button fill="clear" (click)="closeScanner()">
+          <ion-icon
+            name="close-outline"
+            color="light">
+          </ion-icon>
+        </ion-button>
+
+        <h2>Scan QR Code</h2>
+      </div>
+
+      <div class="scanner-frame">
+        <div class="scan-line"></div>
+
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+      </div>
+
+      <p class="hint">
+        Align the QR code within the frame
+      </p>
+
+    </div>
+
+  </div>
+
+</ion-content>
